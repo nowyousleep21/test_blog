@@ -1,7 +1,14 @@
-<h1><%= @post.title %></h1>
-<p><%= @post.content %></p>
+<h1 class="text-center"><%= @post.title %></h1>
+<p class="text-center"><%= @post.content %></p>
 
-<%= button_to "Редактировать пост", edit_post_path(@post), method: :get %>
-<%= button_to "Удалить пост", post_path(@post), method: :delete, data: {turbo_confirm: "Удалить пост?"} %>
+<div class="container text-center">
+  <div class="d-inline-block">
+    <%= button_to "Редактировать пост", edit_post_path(@post), method: :get, class: "btn btn-dark" %>
+  </div>
+  <div class="d-inline-block">
+    <%= button_to "Удалить пост", post_path(@post),
+      data: {turbo_confirm: "Удалить пост #{@post.title}"}, method: :delete, class: "btn btn-dark" %>
+  </div>
+</div>
 
-<%= link_to "Все посты", posts_path %>
+<p class="text-center mt-2"><%= link_to "Назад ко всем постам", posts_path %></p>

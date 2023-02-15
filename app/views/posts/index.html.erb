@@ -1,7 +1,26 @@
-<h1>Все посты</h1>
-<% @posts.each do |post| %>
-  <p><%= link_to post.title, post_path(post) %></p>
-<% end %>
+<h2 class="text-center">Все посты</h2>
 
-<p><%= link_to "Создать пост", new_post_path %></p>
+<% if @posts.present? %>
+  <p class="text-center"><%= link_to "Создать пост", new_post_path %></p>
+  <nav class="pagination justify-content-center"><%== pagy_bootstrap_nav @pagy %></nav>
+
+  <% @posts.each do |post| %>
+    <div class="card mx-auto mb-1" style="width: 50%">
+      <div class="card-header d-flex flex-md-row align-items-center justify-content-between py-1">
+        <div class="fs-5"><%= link_to "#{post.title}", post_path(post), class: "text-dark text-underline-hover" %></div>
+        <small class="text-muted">
+          <div><%= post.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
+        </small>
+      </div>
+      <div class="card-body">
+        <p><%= truncate (post.content), length: 150 %></p>
+      </div>
+    </div>
+  <% end %>
+
+  <nav class="pagination justify-content-center mt-2"><%== pagy_bootstrap_nav @pagy %></nav>
+<% else %>
+  <p class="text-center">Постов пока нет</p>
+  <p class="text-center"><%= link_to "Вы можете создать первый", new_post_path %></p>
+<% end %>
 

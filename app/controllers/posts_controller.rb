@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
-    @posts = Post.all
+    @pagy, @posts = pagy(Post.order(created_at: :desc), items: 15)
   end
 
   def show
