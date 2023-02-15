@@ -1,0 +1,7 @@
+<h1><%= @post.title %></h1>
+<p><%= @post.content %></p>
+
+<%= button_to "Редактировать пост", edit_post_path(@post), method: :get %>
+<%= button_to "Удалить пост", post_path(@post), method: :delete, data: {turbo_confirm: "Удалить пост?"} %>
+
+<%= link_to "Все посты", posts_path %>

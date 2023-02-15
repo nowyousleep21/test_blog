@@ -1,0 +1,13 @@
+<div class="form-control mx-auto" style="width: 65%">
+  <%= form_with data: {turbo: false}, model: post do |form| %>
+
+    <%= form.label :title, "Название", class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
+
+    <%= form.label :content, "Содержание", class: "form-label mt-3" %>
+    <%= form.text_area :content, rows: 10, class: "form-control" %>
+
+    <p class="text-center"><%= form.submit "Сохранить",
+      class: "btn btn-dark btn-lg mt-4 mb-1"%>
+  <% end %>
+</div>
