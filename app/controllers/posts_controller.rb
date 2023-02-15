@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
+  before_action :set_post, only: %i[show edit update destroy purge]
 
   def index
     @pagy, @posts = pagy(Post.order(created_at: :desc), items: 15)
@@ -13,6 +13,11 @@ class PostsController < ApplicationController
   end
 
   def edit
+  end
+
+  def purge
+    @post.image.purge
+    render :edit
   end
 
   def create
@@ -34,16 +39,17 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_path
+    redirect_to posts_path, notice: "Пост удалён!"
   end
 
   private
+
 
   def set_post
     @post = Post.find(params[:id])
   end
 
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :image)
   end
 end

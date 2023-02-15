@@ -7,7 +7,18 @@
     <%= form.label :content, "Содержание", class: "form-label mt-3" %>
     <%= form.text_area :content, rows: 10, class: "form-control" %>
 
-    <p class="text-center"><%= form.submit "Сохранить",
-      class: "btn btn-dark btn-lg mt-4 mb-1"%>
+    <% if post.image.present? %>
+      <p class="text-center">Текущая картинка (нажмите на неё, чтобы удалить)</p>
+      <p class="text-center">
+        <%= link_to image_tag(@post.image.variant(resize_to_fit: [300, 300])), purge_post_path(@post) %>
+      </p>
+    <% else %>
+      <div class="my-3">
+        <%= form.label :image, "Выберите картинку(опционально)", class: "form-label" %>
+        <%= form.file_field :image, class: "form-control" %>
+      </div>
+    <% end %>
+
+    <p class="text-center"><%= form.submit "Сохранить", class: "btn btn-dark btn-lg my-1"%></p>
   <% end %>
 </div>
