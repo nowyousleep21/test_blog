@@ -7,10 +7,10 @@
     <%= form.label :content, "Содержание", class: "form-label mt-3" %>
     <%= form.text_area :content, rows: 10, class: "form-control" %>
 
-    <% if post.image.present? %>
+    <% if post.image.present? && post.persisted? %>
       <p class="text-center">Текущая картинка (нажмите на неё, чтобы удалить)</p>
       <p class="text-center">
-        <%= link_to image_tag(@post.image.variant(resize_to_fit: [300, 300])), purge_post_path(@post) %>
+        <%= link_to image_tag(post.image.variant(resize_to_fit: [300, 300])), purge_post_path(post) %>
       </p>
     <% else %>
       <div class="my-3">

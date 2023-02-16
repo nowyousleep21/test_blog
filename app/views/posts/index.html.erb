@@ -1,4 +1,4 @@
-<h2 class="text-center">Все посты</h2>
+<h2 class="text-center mt-3">Все посты</h2>
 
 <% if @posts.present? %>
   <p class="text-center"><%= link_to "Создать пост", new_post_path %></p>
@@ -18,7 +18,7 @@
     </div>
   <% end %>
 
-  <nav class="pagination justify-content-center mt-2"><%== pagy_bootstrap_nav @pagy %></nav>
+  <nav class="pagination justify-content-center mt-3"><%== pagy_bootstrap_nav @pagy %></nav>
 <% else %>
   <p class="text-center">Постов пока нет</p>
   <p class="text-center"><%= link_to "Вы можете создать первый", new_post_path %></p>

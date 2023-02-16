@@ -1,0 +1,20 @@
+<nav class="py-2 bg-light border-bottom">
+  <div class="container d-flex flex-wrap">
+    <ul class="nav me-auto">
+      <li class="nav-item"><%= link_to "Главная", home_path, class: "nav-link link-dark px-2" %></li>
+    </ul>
+    <ul class="nav">
+      <% if current_user.present? %>
+        <li class="nav-item"><%= link_to current_user.name.present? ? "#{current_user.name}" : "Профиль",
+          edit_user_registration_path, class: "nav-link link-dark px-2 fst-italic" %></li>
+        <li class="nav-item"><%= button_to "Выйти", destroy_user_session_path, method: :delete,
+          class: "px-2 my-1 btn btn-sm btn-dark" %></li>
+      <% else %>
+        <li class="nav-item"><%= link_to "Регистрация", new_user_registration_path,
+          class: "nav-link link-dark px-2" %></li>
+        <li class="nav-item"><%= link_to "Войти", new_user_session_path,
+          class: "nav-link link-dark px-2" %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
