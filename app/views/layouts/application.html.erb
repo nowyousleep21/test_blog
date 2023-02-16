@@ -11,6 +11,7 @@
   </head>
 
   <body>
+    <%= render "/layouts/header" %>
     <% if flash[:notice].present? %>
       <p class="text-center alert alert-success mx-2"><%= flash[:notice] %></p>
     <% elsif flash[:alert].present? %>
