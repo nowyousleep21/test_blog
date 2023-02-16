@@ -1,4 +1,4 @@
-<h1 class="text-center"><%= @post.title %></h1>
+<h2 class="text-center"><%= @post.title %></h2>
 
 <% if @post.image.attached? %>
   <p class="text-center"><%= link_to image_tag(@post.image.variant(resize_to_fit: [500, 500])), @post.image %></p>
