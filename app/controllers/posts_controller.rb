@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: %i[new edit create update destroy only_self]
   before_action :set_post, only: %i[show edit update destroy purge]
 
   def index
@@ -42,6 +43,11 @@ class PostsController < ApplicationController
     redirect_to posts_path, notice: "Пост удалён!"
   end
 
+  def only_self
+    @pagy, @posts = pagy(Post.where(user_id: current_user.id), items: 15)
+    render :index
+  end
+
   private
 
 
@@ -50,6 +56,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :image)
+    params.require(:post).permit(:title, :content, :image).merge(user_id: current_user.id)
   end
 end
