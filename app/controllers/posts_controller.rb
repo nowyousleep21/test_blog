@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: %i[new edit create update destroy only_self]
+  before_action :authenticate_user!, except: %i[index show]
   before_action :set_post, only: %i[show edit update destroy purge]
+  before_action :compare_id, only: %i[edit update destroy]
 
   def index
     @pagy, @posts = pagy(Post.order(created_at: :desc), items: 15)
@@ -50,6 +51,10 @@ class PostsController < ApplicationController
 
   private
 
+  def compare_id
+    return if current_user&.id == @post.user.id
+    redirect_to posts_path, alert: "Нельзя редактировать чужие посты!"
+  end
 
   def set_post
     @post = Post.find(params[:id])

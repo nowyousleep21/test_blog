@@ -1,4 +1,4 @@
-<h2 class="text-center"><%= @post.title %></h2>
+<h2 class="text-center mt-3"><%= @post.title %></h2>
 
 <% if @post.image.attached? %>
   <p class="text-center"><%= link_to image_tag(@post.image.variant(resize_to_fit: [500, 500])), @post.image %></p>
@@ -6,8 +6,8 @@
 
 <p class="text-center"><%= @post.content %></p>
 
-<!-- не показываем кнопки, если не залогинен -->
-<% if current_user %>
+<!-- не показываем кнопки, если пост не принадлежит юзеру -->
+<% if current_user.id == @post.user.id %>
   <div class="container text-center">
     <div class="d-inline-block">
       <%= button_to "Редактировать пост", edit_post_path(@post), method: :get, class: "btn btn-dark" %>

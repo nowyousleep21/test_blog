@@ -4,7 +4,7 @@
       <li class="nav-item"><%= link_to "Главная", home_path, class: "nav-link link-dark px-2" %></li>
     </ul>
     <ul class="nav">
-      <% if current_user.present? %>
+      <% if user_signed_in? %>
         <li class="nav-item"><%= link_to current_user.name.present? ? "#{current_user.name}" : "Профиль",
           edit_user_registration_path, class: "nav-link link-dark px-2 fst-italic" %></li>
         <li class="nav-item"><%= button_to "Выйти", destroy_user_session_path, method: :delete,
