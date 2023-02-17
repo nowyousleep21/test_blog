@@ -1,0 +1,18 @@
+ru:
+  activerecord:
+    attributes:
+      user:
+        name: "Имя пользователя"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+        current_password: "Вы не ввели текущий пароль"
+      post:
+        title: "Название поста"
+        content: "Содержание поста"
+    errors:
+      models:
+        user:
+          attributes:
+            current_password:
+              blank: "для подтверждения"
+
