@@ -6,5 +6,9 @@ Rails.application.routes.draw do
     get :only_self, on: :collection
   end
 
-  root to: 'posts#index', as: 'home'
+  root to: 'posts#index'
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
+  ActiveAdmin.routes(self)
 end
