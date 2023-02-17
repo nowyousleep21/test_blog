@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   end
 
   def only_self
-    @pagy, @posts = pagy(Post.where(user_id: current_user.id), items: 15)
+    @pagy, @posts = pagy(Post.where(user_id: current_user.id).order(created_at: :desc), items: 15)
     render :index
   end
 
