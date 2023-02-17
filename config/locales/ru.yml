@@ -9,6 +9,8 @@ ru:
       post:
         title: "Название поста"
         content: "Содержание поста"
+      comment:
+        body: "Текст комментария"
     errors:
       models:
         user:

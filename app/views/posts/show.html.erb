@@ -19,4 +19,8 @@
   </div>
 <% end %>
 
+<%= render "comments/form", post: @post, comment: @comment if current_user %>
+
+<%= render "comments/comments", post: @post %>
+
 <p class="text-center mt-2"><%= link_to "Назад ко всем постам", posts_path %></p>

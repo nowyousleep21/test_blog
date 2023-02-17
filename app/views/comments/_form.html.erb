@@ -1,0 +1,11 @@
+<div class="form-control mx-auto my-4 pt-2" style="width: 35%">
+  <%= form_with data: {turbo: false}, model: [post, comment || post.comments.build] do |form| %>
+    <%= render "shared/errors", object: comment %>
+
+    <%= form.label :body, "Напишите ваш комментарий", class: "form-label mt-1" %>
+    <%= form.text_area :body, rows: 3, class: "form-control" %>
+
+    <p class="text-end mb-1"><%= form.submit "Сохранить",
+      class: "btn btn-dark btn-sm mt-2"%>
+  <% end %>
+</div>
