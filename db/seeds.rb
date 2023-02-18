@@ -1,4 +1,4 @@
-user = User.create(name: "admin", email: "example@mail.ru", password: "123456")
+user = User.create(name: "John Doe", email: "example@mail.ru", password: "123456")
 20.times do
   title = Faker::FunnyName.two_word_name
   content = Faker::Lorem.paragraph(sentence_count: 10, supplemental: true)
@@ -10,3 +10,4 @@ user = User.create(name: "admin", email: "example@mail.ru", password: "123456")
 end
 
 
+AdminUser.create!(email: 'admin@example.com', password: '123456', password_confirmation: '123456') if Rails.env.development?
