@@ -3,31 +3,26 @@ ActiveAdmin.register_page "Dashboard" do
   menu priority: 1, label: proc { I18n.t("active_admin.dashboard") }
 
   content title: proc { I18n.t("active_admin.dashboard") } do
-    div class: "blank_slate_container", id: "dashboard_default_message" do
-      span class: "blank_slate" do
-        span I18n.t("active_admin.dashboard_welcome.welcome")
-        small I18n.t("active_admin.dashboard_welcome.call_to_action")
+
+    panel "Последние посты" do
+      ul do
+        Post.order(created_at: :desc).first(3).each do |post|
+          li link_to post.title, admin_post_path(post)
+        end
       end
     end
 
-    # Here is an example of a simple dashboard with columns and panels.
-    #
-    # columns do
-    #   column do
-    #     panel "Recent Posts" do
-    #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
-    #         end
-    #       end
-    #     end
-    #   end
+    br
 
-    #   column do
-    #     panel "Info" do
-    #       para "Welcome to ActiveAdmin."
-    #     end
-    #   end
-    # end
+    panel "Последние комментарии" do
+      ul do
+        Comment.order(created_at: :desc).first(3).each do |comment|
+          li (link_to comment.user.name, admin_user_path(comment.user)) + " прокомментировал пост " +
+            (link_to comment.post.title, admin_post_path(comment.post))
+            para "\"#{comment.body}\""
+          br
+        end
+      end
+    end
   end # content
 end

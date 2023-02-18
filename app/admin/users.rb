@@ -1,18 +1,20 @@
 ActiveAdmin.register User do
+  permit_params :name, :password, :password_confirmation, :email, post_ids: []
+  show do
+    h3 user.name
+    div "Email: " + user.email
+    div "Зарегистрирован: " + user.created_at.strftime("%d.%m.%Y в %H:%M")
+    div "Постов: " + user.posts.count.to_s
+    div "Комментариев: " + user.comments.count.to_s
+  end
 
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # Uncomment all parameters which should be permitted for assignment
-  #
-  # permit_params :email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at, :name
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at, :name]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
-  
+  form title: "New user" do |f|
+    f.inputs "User" do
+      f.input :name
+      f.input :email
+      f.input :password
+      f.input :password_confirmation
+    end
+    f.actions
+  end
 end
