@@ -6,4 +6,10 @@ class User < ApplicationRecord
   validates :name, length: {maximum: 20}
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  before_validation :capitalizing_name
+
+  def capitalizing_name
+    name.capitalize! if name
+  end
 end

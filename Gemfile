@@ -26,7 +26,6 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 
 group :development, :test do
-
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
 
@@ -36,6 +35,9 @@ end
 
 group :test do
   gem "capybara"
+  gem 'rails-controller-testing'
+  gem 'rspec-rails', '~> 6.0.0'
   gem "selenium-webdriver"
+  gem 'shoulda-matchers', '~> 5.0'
   gem "webdrivers"
 end
