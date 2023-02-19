@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+     @post = Post.new
   end
 
   def edit
@@ -25,7 +25,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to posts_path, notice: "Пост создан!"
+      redirect_to post_path(@post), notice: "Пост создан!"
     else
       render :new
     end

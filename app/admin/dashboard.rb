@@ -17,7 +17,7 @@ ActiveAdmin.register_page "Dashboard" do
     panel "Последние комментарии" do
       ul do
         Comment.order(created_at: :desc).first(3).each do |comment|
-          li (link_to comment.user.name, admin_user_path(comment.user)) + " прокомментировал пост " +
+          li h4 (link_to comment.user.name, admin_user_path(comment.user)) + " прокомментировал пост " +
             (link_to comment.post.title, admin_post_path(comment.post))
             para "\"#{comment.body}\""
           br
